@@ -1,4 +1,5 @@
-setwd("/Users/ryo/Documents/R/R_study/lissajous/input")
+cwd <- getwd()
+setwd(paste(cwd, "input", sep = "/"))
 library(tuneR)
 
 win_lng <- 10 ## ms
@@ -11,6 +12,7 @@ fnames <- list.files(path = pwd, pattern = "*.wav")
 par(mfrow = c(3, 2), mar = c(1, 1, 0.5, 0.5))
 
 for (fname in fnames) {
+  setwd(paste(cwd, "input", sep = "/"))
   wav_l <- readWave(fname)@left
   wav_r <- readWave(fname)@right
   fs <- readWave(fname)@samp.rate
@@ -18,7 +20,7 @@ for (fname in fnames) {
   win_ln <- round(win_lng * (fs / 1000))
   index <- 1
 
-  setwd("/Users/ryo/Documents/R/R_study/lissajous/output")
+  setwd(paste(cwd, "output"), sep = "/")
   pdf(sprintf("%s.pdf", substring(fname, 1, (nchar(fname) - 4)))) # , width = 600, height = 600)
   par(mfrow = c(3, 2), mar = c(1, 1, 0.5, 0.5))
   count <- 1
@@ -42,5 +44,4 @@ for (fname in fnames) {
     count <- count + 1
   }
   dev.off()
-  setwd("/Users/ryo/Documents/R/R_study/lissajous/input")
 }
