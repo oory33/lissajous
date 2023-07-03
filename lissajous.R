@@ -20,7 +20,7 @@ for (fname in fnames) {
   win_ln <- round(win_lng * (fs / 1000))
   index <- 1
 
-  setwd(paste(cwd, "output"), sep = "/")
+  setwd(paste(cwd, "output", sep = "/"))
   pdf(sprintf("%s.pdf", substring(fname, 1, (nchar(fname) - 4)))) # , width = 600, height = 600)
   par(mfrow = c(3, 2), mar = c(1, 1, 0.5, 0.5))
   count <- 1
